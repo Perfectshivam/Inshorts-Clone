@@ -31,10 +31,8 @@ console.log(newsResults,'newsResults app');
 
 
   useEffect(() => {
-    newsApi()
-  }, [newsResults,category,
-    // loadMore
-  ])
+  }, [newsResults,category])
+  newsApi()
   
 
   return (
