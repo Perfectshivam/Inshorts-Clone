@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState,useEffect } from "react";
+import axios from 'axios';
+import NavbarInshorts from "./Components/Navbar/NavbarInshorts";
+import apiKey from "./Data/config";
+import NewsContent from "./Components/NewsContent/NewsContent";
+import Footer from "./Components/Footer/Footer";
+import countries from "./Data/countries";
+
 
 function App() {
+  const[category,setCategory]=useState('top');
+  const[newsArray,setNewsArray]=useState([]);
+  const[newsResults,setNewsResults]=useState();
+  // const [loadMore, setLoadMore] = useState(5);
+
+  console.log(process.env,'env')
+
+  const newsApi=async()=>{
+    try {
+      const news=await axios.get(`https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=en&category=${category} `);
+      // ('https://newsdata.io/api/1/news?apikey=pub_102289ef3ee3f5c6f6fdf44a6f85fc88bdc87&country=in&language=en&category=top')
+      setNewsArray(news.data.results);
+      setNewsResults(news.data.totalResults)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+console.log(newsArray,'newsArray app');
+console.log(newsResults,'newsResults app');
+
+
+  useEffect(() => {
+    newsApi()
+  }, [newsResults,category,
+    // loadMore
+  ])
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <NavbarInshorts setCategory={setCategory} />
+    <NewsContent 
+    newsArray={newsArray} newsResults={newsResults}
+    // loadMore={loadMore} setLoadMore={setLoadMore} 
+    />
+    <Footer />
     </div>
   );
 }
