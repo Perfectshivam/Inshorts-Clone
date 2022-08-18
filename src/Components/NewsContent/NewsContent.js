@@ -5,7 +5,7 @@ import NewsCard from '../NewsCard/NewsCard';
 
 
 function NewsContent({newsArray
-  // ,newsResults,loadMore,setLoadMore
+  //newsResults,loadMore,setLoadMore
 }) {
   return (
     <Container maxWidth='md'>

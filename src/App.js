@@ -14,24 +14,25 @@ function App() {
   // const [loadMore, setLoadMore] = useState(5);
 
 
-  const newsApi=async()=>{
-    try {
-      const news=await axios.get(`https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=en&category=${category} `);
-      // ('https://newsdata.io/api/1/news?apikey=pub_102289ef3ee3f5c6f6fdf44a6f85fc88bdc87&country=in&language=en&category=top')
-      setNewsArray(news.data.results);
-      setNewsResults(news.data.totalResults)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+ 
 
 console.log(newsArray,'newsArray app');
 console.log(newsResults,'newsResults app');
 
 
   useEffect(() => {
+    const newsApi=async()=>{
+      try {
+        const news=await axios.get(`https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=en&category=${category} `);
+        // ('https://newsdata.io/api/1/news?apikey=pub_102289ef3ee3f5c6f6fdf44a6f85fc88bdc87&country=in&language=en&category=top')
+        setNewsArray(news.data.results);
+        setNewsResults(news.data.totalResults)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     newsApi();
-  }, [newsResults,category])
+  }, [category])
   
 
   return (
