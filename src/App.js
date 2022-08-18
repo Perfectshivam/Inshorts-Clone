@@ -13,7 +13,6 @@ function App() {
   const[newsResults,setNewsResults]=useState();
   // const [loadMore, setLoadMore] = useState(5);
 
-  console.log(process.env,'env')
 
   const newsApi=async()=>{
     try {
@@ -31,8 +30,8 @@ console.log(newsResults,'newsResults app');
 
 
   useEffect(() => {
+    newsApi();
   }, [newsResults,category])
-  newsApi()
   
 
   return (
