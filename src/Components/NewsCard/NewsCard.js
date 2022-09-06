@@ -10,13 +10,7 @@ const NewsCard = ({ newsItem }) => {
   console.log(newsItem,'newsItem')
   return (
     <div className="newsCard">
-      {/* {
-        newsItem?.image_url && <img
-        className="newsImage"
-        alt={newsItem?.title}
-        src={newsItem?.image_url }
-      />
-      } */}
+      
       <img
         alt={newsItem.title}
         src={
